@@ -1,28 +1,2 @@
 # Endian
-
-Valde att skapa en "random-generator" för att få till mina random decimal tal, och valde att begränsa det till antal 100.
-Sedan i min main öppnar jag filen (fstream) för att ta varje rad/tal och sedan mha "binary_string16bits" omvandla talen
-till binära tal i 16 bits (2 bytes då jag jobbar i unsigned short = 2 bytes). Med hjälp av "to_hex" så
-omvandlar jag mina binära tal till hex-tal. (väljer att även fylla på med "0x" i början för att highlighta att det är hex.
-
-Skapar en temporär variabel (temp) som swapar mha (swap_uint16), dvs tar den första byten och bytar med sista, då jag vill få fram
-little endian. Därefter gör jag om det till en binärsträng igen mha (binary_string16bits) för att sedan extrahera
-de 4+4 mittersta bitarna från min little endian med en funktion som heter (extractToChar). Där väljer jag vilken variabel
-jag vill extrahera från (=temp, som nu har blivit 16 bitars binärtal) och väljer att ta i intervall 4 - 12 för att få fram
-mina 8 mittersta tal.
-Därefter avslutar jag med att konvertera min variabel cc mha (binary_string8bits) för att få den till en string och
-skriver ut den i min 3:e fil.
-
-
-Så kort och gott så börjar jag att jobba med ett värde -> binärt tal 16 bits(unsigned short 2 byte) -> gör om till hex
--> swapar hexarna (big endian till little endian) -> konverterar little endian till binära 16 bits -> castar till unsigned char
--> extraherar 8 mittersta bitarna.
-
-RandomStreamList.txt = mina value/tal som genereras av min (makeStartList()) funktion. Slumpar 100 tal mellan 1 - 65535.
-littleEndianList.txt = skriver ut Little Endians, från RandomStreamList efter ha konverterat till hex osv.
-middleBits.txt       = skriver ut dem 8 mittersta bitarna från little endian (16 bitars unsigned short) -> unsigned char (8bitar).
-
-//David Karnel
-
-
-
+//David
