@@ -4,22 +4,33 @@
 #include <algorithm>
 #include <string>
 #include <cstdlib>
-#include <sstream>
 #include <iomanip>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 unsigned short i;
+
+
 
 fstream file_in("randomStreamList.txt");
 ofstream file_out("littleEndianList.txt");
 ofstream file_out2("middleBits.txt");
 
 void makeStartList(){
+    int numberOfEntries;
+    cout << "Welcome to Endian-school assignment \n" << endl;
+    cout << "Enter the number of entries you would like to have in your dataset (int): " << endl;
+    cin >> numberOfEntries;
+    cout << "You've choosen: " << numberOfEntries <<" "<< "entries. " << endl;
+    cout << "Processing data ... " << endl;
+    cout << endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     ofstream Myfile("randomStreamList.txt");
     unsigned short min = 1;
     unsigned short max = 65535;
     srand(time(NULL));
-    while(i++ < 100){ ///Antal valda entries.
+    while(i++ < numberOfEntries ){
         unsigned short value = min + (rand() % static_cast<unsigned short>(max - min + 1));
         Myfile << value << "\n";
     }
@@ -70,10 +81,14 @@ int main() {
                 binary_string16bits(temp);
                 unsigned char cc = extractToChar(temp,4,12);
 
-                cout << "Decimal Value: " << value << " | " << "Binary: " << binary_string16bits(stoi(value, nullptr,10))
-                << " | " << "Big Endian: " << to_hex(stoi(value, nullptr,10))<< " | "<< "Little Endian: " << c
-                << " | " <<"Middle 8 bits: " << binary_string8bits(cc) << " --> "  << "Size: "<<sizeof (cc) << " | " << "Data Type: "
-                << typeid(cc).name() << "\n" << "-------" << "\n" << endl;
+                cout    << "Decimal Value: " << setw(28) << value  <<"\n"
+                        << "Binary: " << setw(46) << binary_string16bits(stoi(value, nullptr,10))<<"\n"
+                        << "Big Endian: " << setw(32) << to_hex(stoi(value, nullptr,10))<<  "\n"
+                        << "Little Endian: " << setw(29) << c<< "\n"
+                        << "Middle 8 bits: " << setw(31)  << binary_string8bits(cc)<< "\n"
+                        << "Size of 'middle 8 bits': " << setw(14) << sizeof (cc)<< " byte(s)" << "\n"
+                        << "Data Type: "  << setw(40)<< typeid(cc).name() << "\n"
+                        << "\n" << setw(25) << "----------" << "\n" <<endl;
 
 
                 file_out << c << "\n";
