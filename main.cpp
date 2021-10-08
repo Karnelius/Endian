@@ -51,6 +51,7 @@ string to_hex(unsigned short val, size_t width=sizeof(unsigned short)*2)
 {
     std::stringstream ss;
     ss << "0x" << setfill('0') << setw(width) << hex << (val);
+
     return ss.str();
 }
 
@@ -81,14 +82,14 @@ int main() {
                 binary_string16bits(temp);
                 unsigned char cc = extractToChar(temp,4,12);
 
-                cout    << "Decimal Value: " << setw(28) << value  <<"\n"
-                        << "Binary: " << setw(46) << binary_string16bits(stoi(value, nullptr,10))<<"\n"
-                        << "Big Endian: " << setw(32) << to_hex(stoi(value, nullptr,10))<<  "\n"
-                        << "Little Endian: " << setw(29) << c<< "\n"
-                        << "Middle 8 bits: " << setw(31)  << binary_string8bits(cc)<< "\n"
-                        << "Size of 'middle 8 bits': " << setw(14) << sizeof (cc)<< " byte(s)" << "\n"
-                        << "Data Type: "  << setw(40)<< typeid(cc).name() << "\n"
-                        << "\n" << setw(25) << "----------" << "\n" <<endl;
+                cout    << "Decimal Value: " << setw(28) << value <<"\n"
+                        << "Binary: " << setw(46) << binary_string16bits(stoi(value, nullptr,10)) << "\n"
+                        << "Big Endian: " << setw(32) << to_hex(stoi(value, nullptr,10)) << "\n"
+                        << "Little Endian: " << setw(29) << c << "\n"
+                        << "Middle 8 bits: " << setw(31)  << binary_string8bits(cc) << "\n"
+                        << "Size of 'middle 8 bits': " << setw(14) << sizeof (cc) << " byte(s)" << "\n"
+                        << "Data Type: " << setw(40) << typeid(cc).name() << "\n"
+                        << "\n" << setw(25) << "----------" << "\n" << endl;
 
 
                 file_out << c << "\n";
